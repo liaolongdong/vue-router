@@ -4,9 +4,10 @@ import Link from './components/link'
 export let _Vue
 
 export function install (Vue) {
+  // 判断是否装载
   if (install.installed && _Vue === Vue) return
   install.installed = true
-
+  // export 一个 Vue 引用
   _Vue = Vue
 
   const isDef = v => v !== undefined

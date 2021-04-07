@@ -1,5 +1,5 @@
 /* @flow */
-
+// 异步任务调度
 export function runQueue (queue: Array<?NavigationGuard>, fn: Function, cb: Function) {
   const step = index => {
     if (index >= queue.length) {

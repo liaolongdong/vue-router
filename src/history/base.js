@@ -260,7 +260,7 @@ export class History {
     this.pending = null
   }
 }
-
+// 标准化base，必须以 / 或者 /home 格式
 function normalizeBase (base: ?string): string {
   if (!base) {
     if (inBrowser) {

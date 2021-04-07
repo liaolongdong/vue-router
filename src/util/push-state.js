@@ -4,7 +4,7 @@ import { inBrowser } from './dom'
 import { saveScrollPosition } from './scroll'
 import { genStateKey, setStateKey, getStateKey } from './state-key'
 import { extend } from './misc'
-
+// 判断是否支持pushState
 export const supportsPushState =
   inBrowser &&
   (function () {

@@ -6,7 +6,7 @@ import { resolveQuery } from './query'
 import { fillParams } from './params'
 import { warn } from './warn'
 import { extend } from './misc'
-
+// 标准化location
 export function normalizeLocation (
   raw: RawLocation,
   current: ?Route,

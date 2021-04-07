@@ -20,6 +20,7 @@ export function createMatcher (
   routes: Array<RouteConfig>,
   router: VueRouter
 ): Matcher {
+  // 创建路由 map
   const { pathList, pathMap, nameMap } = createRouteMap(routes)
 
   function addRoutes (routes) {
@@ -47,7 +48,7 @@ export function createMatcher (
   function getRoutes () {
     return pathList.map(path => pathMap[path])
   }
-
+  // 匹配函数
   function match (
     raw: RawLocation,
     currentRoute?: Route,

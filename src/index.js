@@ -45,14 +45,17 @@ export default class VueRouter {
     this.beforeHooks = []
     this.resolveHooks = []
     this.afterHooks = []
+    // 根据传入的routes参数生成路由状态表
     this.matcher = createMatcher(options.routes || [], this)
-
+    // 默认使用hash路由模式
     let mode = options.mode || 'hash'
+    // 如果不支持history模式，则回退使用hash模式
     this.fallback =
       mode === 'history' && !supportsPushState && options.fallback !== false
     if (this.fallback) {
       mode = 'hash'
     }
+    // 非浏览器环境（比如node环境）使用abstract路由模式
     if (!inBrowser) {
       mode = 'abstract'
     }
@@ -113,7 +116,7 @@ export default class VueRouter {
     }
 
     this.app = app
-
+    // 通过history来确定不同路由的切换动作history.transitionTo
     const history = this.history
 
     if (history instanceof HTML5History || history instanceof HashHistory) {
@@ -136,7 +139,7 @@ export default class VueRouter {
         setupListeners
       )
     }
-
+    // 通过 history.listen来注册路由变化的响应回调
     history.listen(route => {
       this.apps.forEach(app => {
         app._route = route

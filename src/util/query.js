@@ -48,7 +48,7 @@ export function resolveQuery (
 }
 
 const castQueryParamValue = value => (value == null || typeof value === 'object' ? value : String(value))
-
+// 解析url参数
 function parseQuery (query: string): Dictionary<string> {
   const res = {}
 
@@ -74,7 +74,7 @@ function parseQuery (query: string): Dictionary<string> {
 
   return res
 }
-
+// 序列化参数对象
 export function stringifyQuery (obj: Dictionary<string>): string {
   const res = obj
     ? Object.keys(obj)

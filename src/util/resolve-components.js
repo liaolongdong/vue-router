@@ -82,7 +82,7 @@ export function flatMapComponents (
     ))
   }))
 }
-
+// 扁平化二维数组
 export function flatten (arr: Array<any>): Array<any> {
   return Array.prototype.concat.apply([], arr)
 }
@@ -90,7 +90,7 @@ export function flatten (arr: Array<any>): Array<any> {
 const hasSymbol =
   typeof Symbol === 'function' &&
   typeof Symbol.toStringTag === 'symbol'
-
+// 判断是否为ESModule
 function isESModule (obj) {
   return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module')
 }
@@ -99,6 +99,7 @@ function isESModule (obj) {
 // so the resolve/reject functions may get called an extra time
 // if the user uses an arrow function shorthand that happens to
 // return that Promise.
+// 只执行一次回调函数
 function once (fn) {
   let called = false
   return function (...args) {

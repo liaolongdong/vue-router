@@ -4,7 +4,7 @@ import type VueRouter from '../index'
 import { stringifyQuery } from './query'
 
 const trailingSlashRE = /\/?$/
-
+// 创建route对象
 export function createRoute (
   record: ?RouteRecord,
   location: Location,
@@ -31,9 +31,10 @@ export function createRoute (
   if (redirectedFrom) {
     route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery)
   }
+  // 冻结route对象
   return Object.freeze(route)
 }
-
+// 实现深拷贝
 function clone (value) {
   if (Array.isArray(value)) {
     return value.map(clone)
@@ -61,7 +62,7 @@ function formatMatch (record: ?RouteRecord): Array<RouteRecord> {
   }
   return res
 }
-
+// 获取完整的路径
 function getFullPath (
   { path, query = {}, hash = '' },
   _stringifyQuery
@@ -92,7 +93,7 @@ export function isSameRoute (a: Route, b: ?Route, onlyPath: ?boolean): boolean {
     return false
   }
 }
-
+// 判断两个对象是否相等
 function isObjectEqual (a = {}, b = {}): boolean {
   // handle null value #1566
   if (!a || !b) return a === b

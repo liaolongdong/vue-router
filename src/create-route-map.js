@@ -3,7 +3,7 @@
 import Regexp from 'path-to-regexp'
 import { cleanPath } from './util/path'
 import { assert, warn } from './util/warn'
-
+// 创建路由 map
 export function createRouteMap (
   routes: Array<RouteConfig>,
   oldPathList?: Array<string>,
@@ -18,10 +18,12 @@ export function createRouteMap (
   // the path list is used to control path matching priority
   const pathList: Array<string> = oldPathList || []
   // $flow-disable-line
+  // path 路由 map
   const pathMap: Dictionary<RouteRecord> = oldPathMap || Object.create(null)
   // $flow-disable-line
+  // name 路由 map
   const nameMap: Dictionary<RouteRecord> = oldNameMap || Object.create(null)
-
+  // 遍历路由配置对象 增加 路由记录
   routes.forEach(route => {
     addRouteRecord(pathList, pathMap, nameMap, route, parentRoute)
   })
@@ -88,7 +90,7 @@ function addRouteRecord (
   if (typeof route.caseSensitive === 'boolean') {
     pathToRegexpOptions.sensitive = route.caseSensitive
   }
-
+  // 路由记录 对象
   const record: RouteRecord = {
     path: normalizedPath,
     regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
@@ -113,7 +115,7 @@ function addRouteRecord (
           ? route.props
           : { default: route.props }
   }
-
+  // 嵌套子路由 则递归增加 记录
   if (route.children) {
     // Warn if route is named, does not redirect and has a default child route.
     // If users navigate to this route by name, the default child will
@@ -148,7 +150,7 @@ function addRouteRecord (
     pathList.push(record.path)
     pathMap[record.path] = record
   }
-
+  // 处理别名 alias 逻辑 增加对应的 记录
   if (route.alias !== undefined) {
     const aliases = Array.isArray(route.alias) ? route.alias : [route.alias]
     for (let i = 0; i < aliases.length; ++i) {

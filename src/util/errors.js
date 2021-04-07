@@ -1,4 +1,5 @@
 // When changing thing, also edit router.d.ts
+// 导航失败类型
 export const NavigationFailureType = {
   redirected: 2,
   aborted: 4,

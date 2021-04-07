@@ -4,7 +4,7 @@ import { warn } from './warn'
 import Regexp from 'path-to-regexp'
 
 // $flow-disable-line
-const regexpCompileCache: {
+const regexpCompileCache: { // 缓存对象
   [key: string]: Function
 } = Object.create(null)
 

@@ -41,7 +41,7 @@ export function resolvePath (
 
   return stack.join('/')
 }
-
+// 解析path、query、hash
 export function parsePath (path: string): {
   path: string;
   query: string;

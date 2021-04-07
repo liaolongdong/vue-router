@@ -10,6 +10,7 @@ import { pushState, replaceState, supportsPushState } from '../util/push-state'
 export class HashHistory extends History {
   constructor (router: Router, base: ?string, fallback: boolean) {
     super(router, base)
+    console.log('base', this.base)
     // check history fallback deeplinking
     if (fallback && checkFallback(this.base)) {
       return
@@ -33,6 +34,7 @@ export class HashHistory extends History {
     }
 
     const handleRoutingEvent = () => {
+      // 当前路由对象
       const current = this.current
       if (!ensureSlash()) {
         return

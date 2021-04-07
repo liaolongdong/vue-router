@@ -30,47 +30,29 @@ export class HTML5History extends History {
     }
 
     const handleRoutingEvent = () => {
+      // 当前路由对象
       const current = this.current
+      console.log('current', current)
 
+      // 避免在有的浏览器中第一次加载路由就会触发 `popstate` 事件
       // Avoiding first `popstate` event dispatched in some browsers but first
       // history route not updated since async guard at the same time.
       const location = getLocation(this.base)
       if (this.current === START && location === this._startLocation) {
         return
       }
-
+      // 执行跳转动作
       this.transitionTo(location, route => {
         if (supportsScroll) {
           handleScroll(router, route, current, true)
         }
       })
     }
+    // 监听 popstate 事件
     window.addEventListener('popstate', handleRoutingEvent)
     this.listeners.push(() => {
       window.removeEventListener('popstate', handleRoutingEvent)
     })
-  }
-
-  go (n: number) {
-    window.history.go(n)
-  }
-
-  push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
-    const { current: fromRoute } = this
-    this.transitionTo(location, route => {
-      pushState(cleanPath(this.base + route.fullPath))
-      handleScroll(this.router, route, fromRoute, false)
-      onComplete && onComplete(route)
-    }, onAbort)
-  }
-
-  replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
-    const { current: fromRoute } = this
-    this.transitionTo(location, route => {
-      replaceState(cleanPath(this.base + route.fullPath))
-      handleScroll(this.router, route, fromRoute, false)
-      onComplete && onComplete(route)
-    }, onAbort)
   }
 
   ensureURL (push?: boolean) {
