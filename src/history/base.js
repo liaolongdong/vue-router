@@ -77,7 +77,7 @@ export class History {
   onError (errorCb: Function) {
     this.errorCbs.push(errorCb)
   }
-
+  // 路由切换
   transitionTo (
     location: RawLocation,
     onComplete?: Function,
@@ -236,7 +236,7 @@ export class History {
       })
     })
   }
-
+  // 更新当前路由
   updateRoute (route: Route) {
     this.current = route
     this.cb && this.cb(route)

@@ -15,18 +15,17 @@ export type Matcher = {
   addRoute: (parentNameOrRoute: string | RouteConfig, route?: RouteConfig) => void;
   getRoutes: () => Array<RouteRecord>;
 };
-
 export function createMatcher (
   routes: Array<RouteConfig>,
   router: VueRouter
 ): Matcher {
-  // 创建路由 map
+  // 创建映射表
   const { pathList, pathMap, nameMap } = createRouteMap(routes)
-
+  // 动态添加路由配置
   function addRoutes (routes) {
     createRouteMap(routes, pathList, pathMap, nameMap)
   }
-
+  // 动态添加路由配置
   function addRoute (parentOrRoute, route) {
     const parent = (typeof parentOrRoute !== 'object') ? nameMap[parentOrRoute] : undefined
     // $flow-disable-line
@@ -48,7 +47,7 @@ export function createMatcher (
   function getRoutes () {
     return pathList.map(path => pathMap[path])
   }
-  // 匹配函数
+  // 计算新路径
   function match (
     raw: RawLocation,
     currentRoute?: Route,

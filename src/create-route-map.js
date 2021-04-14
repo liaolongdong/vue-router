@@ -23,7 +23,7 @@ export function createRouteMap (
   // $flow-disable-line
   // name 路由 map
   const nameMap: Dictionary<RouteRecord> = oldNameMap || Object.create(null)
-  // 遍历路由配置对象 增加 路由记录
+  // 遍历所有的 route 生成对应映射表
   routes.forEach(route => {
     addRouteRecord(pathList, pathMap, nameMap, route, parentRoute)
   })
@@ -55,7 +55,7 @@ export function createRouteMap (
     nameMap
   }
 }
-
+// 添加路由记录
 function addRouteRecord (
   pathList: Array<string>,
   pathMap: Dictionary<RouteRecord>,
@@ -209,7 +209,7 @@ function compileRouteRegex (
   }
   return regex
 }
-
+// 标准化path
 function normalizePath (
   path: string,
   parent?: RouteRecord,

@@ -251,14 +251,14 @@ export default class VueRouter {
   getRoutes () {
     return this.matcher.getRoutes()
   }
-
+  // 添加一条新的路由规则记录作为现有路由的子路由
   addRoute (parentOrRoute: string | RouteConfig, route?: RouteConfig) {
     this.matcher.addRoute(parentOrRoute, route)
     if (this.history.current !== START) {
       this.history.transitionTo(this.history.getCurrentLocation())
     }
   }
-
+  // 动态添加更多的路由规则 已废弃：使用 router.addRoute() 代替
   addRoutes (routes: Array<RouteConfig>) {
     if (process.env.NODE_ENV !== 'production') {
       warn(false, 'router.addRoutes() is deprecated and has been removed in Vue Router 4. Use router.addRoute() instead.')
@@ -269,7 +269,7 @@ export default class VueRouter {
     }
   }
 }
-
+// 注册hook
 function registerHook (list: Array<any>, fn: Function): Function {
   list.push(fn)
   return () => {
@@ -277,18 +277,18 @@ function registerHook (list: Array<any>, fn: Function): Function {
     if (i > -1) list.splice(i, 1)
   }
 }
-
+// 创建href
 function createHref (base: string, fullPath: string, mode) {
   var path = mode === 'hash' ? '#' + fullPath : fullPath
   return base ? cleanPath(base + '/' + path) : path
 }
-
+// 挂载install方法
 VueRouter.install = install
 VueRouter.version = '__VERSION__'
 VueRouter.isNavigationFailure = isNavigationFailure
 VueRouter.NavigationFailureType = NavigationFailureType
 VueRouter.START_LOCATION = START
-
+// 浏览器环境安装vue-router
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter)
 }

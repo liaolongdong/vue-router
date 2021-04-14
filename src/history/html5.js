@@ -41,7 +41,7 @@ export class HTML5History extends History {
       if (this.current === START && location === this._startLocation) {
         return
       }
-      // 执行跳转动作
+      // 执行路由切换动作
       this.transitionTo(location, route => {
         if (supportsScroll) {
           handleScroll(router, route, current, true)
@@ -66,7 +66,7 @@ export class HTML5History extends History {
     return getLocation(this.base)
   }
 }
-
+// 得到除去 base 的真正的 location 值
 export function getLocation (base: string): string {
   let path = window.location.pathname
   if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
