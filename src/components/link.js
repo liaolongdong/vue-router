@@ -207,7 +207,7 @@ function guardEvent (e) {
   }
   return true
 }
-
+// 递归查找 a 标签
 function findAnchor (children) {
   if (children) {
     let child
